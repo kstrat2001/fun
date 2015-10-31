@@ -1,5 +1,9 @@
 *.swo
 *.swp
 
-/bin
-/obj
+/bin/*
+/obj/*
+
+!/bin/anchor.txt
+!/obj/anchor.txt
+
