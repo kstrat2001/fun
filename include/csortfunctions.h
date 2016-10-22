@@ -2,6 +2,7 @@
 
 #include <cstdlib>
 #include <iostream>
+#include <cassert>
 
 template <class T>
 void swap( T& a, T& b )
@@ -34,23 +35,23 @@ size_t partition( T arr[ ], size_t start, size_t end, size_t pivot )
 }
 
 template <class T>
-void quickSort( T arr[ ], size_t start, size_t end )
+void quickSortPartition( T arr[ ], size_t start, size_t end )
 {
-    if( ( end - start ) > 1 )
+    if( end > start )
     {
         size_t pivot = start + (( end - start ) / 2 );
 
         pivot = partition( arr, start, end, pivot );
 
-        quickSort( arr, start, pivot );
-        quickSort( arr, pivot + 1, end );
+        quickSortPartition( arr, start, pivot );
+        quickSortPartition( arr, pivot + 1, end );
     }
 }
 
 template <class T>
 void quickSort( T arr[ ], size_t size )
 {
-    quickSort( arr, 0, size - 1 );
+    quickSortPartition( arr, 0, size - 1 );
 }
 
 template <class T>

@@ -11,14 +11,16 @@
 #include "treenode.h"
 
 #include <vector>
+#include <functional>
 #include <iostream>
 #include <iomanip>
 
 using namespace gfx;
 using namespace std;
 
-void testHeap( size_t numBlocks );
-void testSort( size_t arrSize );
+template <class T>
+void testSort( size_t arrSize, std::function<void(T*, size_t)> fn );
+
 void testList();
 void testHash();
 void testGraph();
@@ -26,17 +28,22 @@ void testTree( size_t size );
 
 int main()
 {
-    //testHeap(10);
+    std::function<void(int*, size_t)> sortFn = mergeSort<int>;
+    testSort<int>( 10, sortFn );
 
-    testSort( 10 );
+    sortFn = heapSort<int>;
+    testSort<int>( 10, sortFn );
 
-    //testHash();
+    sortFn = bubbleSort<int>;
+    testSort<int>( 10, sortFn);
 
-    //testList();
-    
-    //testGraph();
+    sortFn = quickSort<int>;
+    testSort<int>( 10, sortFn);
 
-    //testTree(10);
+    testHash();
+    testList();
+    testGraph();
+    testTree(10);
 
     return 0;
 }
@@ -140,9 +147,10 @@ void testList()
     cerr << "Find 4th Node: " << pNodeNil << endl;
 }
 
-void testSort( size_t arrSize )
+template <class T>
+void testSort( size_t arrSize, std::function<void(T*, size_t)> sortFunc)
 {
-    int* arr = new int[ arrSize ];
+    int* arr = new T[ arrSize ];
 
     cerr << "Initialize array for sort" << endl;
     for( size_t i = 0; i < arrSize; ++i )
@@ -151,48 +159,13 @@ void testSort( size_t arrSize )
         cerr << "arr[ " << i << " ] = " << arr[ i ] << endl;
     }
 
-    //mergeSort( arr, arrSize );
-    quickSort( arr, arrSize );
-    //heapSort( arr, arrSize );
-    //bubbleSort( arr, arrSize );
+    sortFunc( arr, arrSize );
 
     cerr << "Array after sort" << endl;
     for( size_t i = 0; i < arrSize; ++i )
     {
         cerr << "arr[ " << i << " ] = " << arr[ i ] << endl;
     }
+
+    delete [] arr;
 }
-
-void testHeap( size_t numBlocks )
-{
-    gfx::Heap testHeap;
-
-    std::vector<IComparable*> blockVec;
-    blockVec.resize(numBlocks);
-
-    std::cout << "populating " << numBlocks << " blocks: " << std::endl;
-    for( size_t i = 0; i < numBlocks; ++i )
-    {
-        size_t size = rand();
-        std::cout << "Block[ " << i << " ] = " << size << std::endl;
-        blockVec[ i ] = new Block(size);
-    }
-
-    gfx::Sorter sorter( eInsertionSort );
-    sorter.Sort(blockVec);
-
-    std::cout << "Dumping blockVec: " << std::endl;
-
-    for( size_t i = 0; i < numBlocks; ++i )
-    {
-        std::cout << "blockVec[ " << i << " ] = " << blockVec[ i ]->GetValue() << std::endl;
-    }
-
-    char c;
-    std::cin >> c;
-
-    for( size_t i = 0; i < numBlocks; ++i )
-    {
-        delete blockVec[ i ];
-    }
-} 
