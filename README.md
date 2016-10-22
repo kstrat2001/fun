@@ -1,10 +1,18 @@
 # fun
-Messing around with sorting and templates
 
-build:
-sudo make
+Some odds and ends from studying for job interviews
 
-run:
-./bin/fun
+ * Experimenting with sorting algorithms
+ * Hash Map implementation
+ * Graph implementation
+ * Breadth-first search (BFS)
+ * Linked list implementation
+ * Playing with templates and std::function
 
-Testing these classes in main.cpp
+### build ###
+
+`make`
+
+### run ###
+
+`./bin/fun`

@@ -9,8 +9,9 @@ class HashMap
 {
 public:
     HashMap( size_t size )
-    :  m_pBucketArr( NULL )
-      ,mSize( size )
+    :  m_pBucketArr( NULL ),
+      mSize( size ),
+      mNumEntries(0)
     {
         assert( size != 0 && "Hash initial size must be greater than 0!!" );
 

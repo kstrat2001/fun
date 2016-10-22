@@ -28,21 +28,32 @@ void testTree( size_t size );
 
 int main()
 {
+    cout << "----- Testing Merge Sort -----" << std::endl;
     std::function<void(int*, size_t)> sortFn = mergeSort<int>;
     testSort<int>( 10, sortFn );
 
+    cout << "----- Testing Heap Sort -----" << std::endl;
     sortFn = heapSort<int>;
     testSort<int>( 10, sortFn );
 
+    cout << "----- Testing Bubble Sort -----" << std::endl;
     sortFn = bubbleSort<int>;
     testSort<int>( 10, sortFn);
 
+    cout << "----- Testing Quick Sort -----" << std::endl;
     sortFn = quickSort<int>;
     testSort<int>( 10, sortFn);
 
+    cout << "----- Testing Hash -----" << std::endl;
     testHash();
+
+    cout << "----- Testing List -----" << std::endl;
     testList();
+
+    cout << "----- Testing Graph -----" << std::endl;
     testGraph();
+
+    cout << "----- Testing Tree -----" << std::endl;
     testTree(10);
 
     return 0;
@@ -72,8 +83,8 @@ void testTree( size_t size )
     searchNode = root.Search( 200 );
     cout << "Searched for 200: " << searchNode << endl;
 
-    searchNode = root.Search( 59 );
-    cout << "Searched for 59: " << searchNode << endl;
+    searchNode = root.Search( root.GetMin() );
+    cout << "Searched for " << root.GetMin() << ": " << searchNode << endl;
 }
 
 void testGraph()
@@ -124,7 +135,7 @@ void testHash()
     cout << "Found = " << found << ", not_found = " << not_found << endl;
     cout << "Value of found = " << *found  << endl;
 
-    cout << "LoadFactor = " << setprecision( 2 ) << map.GetLoadFactor() << endl;
+    cout << "LoadFactor = " << setprecision( 6 ) << map.GetLoadFactor() << endl;
 }
 
 void testList()
@@ -150,7 +161,7 @@ void testList()
 template <class T>
 void testSort( size_t arrSize, std::function<void(T*, size_t)> sortFunc)
 {
-    int* arr = new T[ arrSize ];
+    T* arr = new T[ arrSize ];
 
     cerr << "Initialize array for sort" << endl;
     for( size_t i = 0; i < arrSize; ++i )
