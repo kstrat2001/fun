@@ -3,8 +3,10 @@
 
 #include <queue>
 
+#include <stdlib.h>
 #include <cassert>
 #include <iostream>
+#include <climits>
 
 Graph::Graph()
 {

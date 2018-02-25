@@ -1,5 +1,7 @@
 #include "graphnode.h"
 
+#include <climits>
+
 GraphNode::GraphNode( int value )
     : mValue( value ),
       mColor( WHITE ),

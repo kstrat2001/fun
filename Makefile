@@ -14,7 +14,7 @@ INCLUDES=$(wildcard $(INCLUDE_DIR)/*.h)
 OBJS=$(patsubst $(SOURCE_DIR)/%.cpp, $(OBJECT_DIR)/%.o, $(SOURCE))
 
 CXX=g++
-CXXFLAGS=-Wall -g -c
+CXXFLAGS=-Wall -g -c -std=c++11
 LD_FLAGS=
 
 all: $(BINARY)

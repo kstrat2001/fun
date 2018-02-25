@@ -1,5 +1,6 @@
 #include "heap.h"
 
+#include <stdlib.h>
 #include <iostream>
 
 namespace gfx

@@ -2,6 +2,8 @@
 
 #include "isortstrategy.h"
 
+#include <stdlib.h>
+
 namespace gfx
 {
     class QuickSortStrategy : public ISortStrategy
